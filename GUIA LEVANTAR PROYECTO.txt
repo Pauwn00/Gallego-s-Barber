@@ -1,0 +1,87 @@
+Guía para levantar los entornos
+1. Backend (FastAPI)
+Para levantar el servidor backend, sigue estos pasos:
+
+# Navegar al directorio del backend
+cd C:\Users\paumt\Desktop\PROYECTO\fastapi-auth
+
+# Activar el entorno virtual (si lo estás usando)
+# Si usas venv:
+# .\venv\Scripts\activate
+
+# Iniciar el servidor FastAPI en modo desarrollo
+# El parámetro --host 0.0.0.0 permite conexiones desde cualquier IP (necesario para acceder desde el emulador)
+python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+python run.py
+El servidor estará disponible en http://localhost:8000 y también en http://tu-ip-local:8000 (por ejemplo, http://192.168.1.128:8000).
+
+2. Frontend (React Native)
+Para levantar la aplicación móvil, sigue estos pasos:
+
+# Navegar al directorio de la aplicación React Native
+cd C:\Users\paumt\Desktop\PROYECTO\AuthMobileApp
+
+# Iniciar Metro bundler
+npx react-native start
+
+En otra terminal:
+
+# Compilar e instalar la aplicación en el dispositivo/emulador Android
+cd C:\Users\paumt\Desktop\PROYECTO\AuthMobileApp
+npx react-native run-android
+
+Nota importante: Asegúrate de tener abierto el emulador de Android antes de ejecutar run-android, o de tener un dispositivo Android conectado con la depuración USB habilitada.
+
+3. Panel de Administrador (HTML/CSS/JavaScript)
+Para abrir el panel de administrador web, sigue estos pasos:
+
+# Opción 1: Abrir directamente en el navegador
+# Simplemente abre el archivo index.html
+cd C:\Users\paumt\Desktop\PROYECTO\admin-panel
+start index.html
+
+# Opción 2: Con servidor local Python (recomendado para desarrollo)
+cd C:\Users\paumt\Desktop\PROYECTO\admin-panel
+python -m http.server 8080
+
+# Luego abre en tu navegador: http://localhost:8080
+
+# Opción 3: Con servidor local Node.js
+cd C:\Users\paumt\Desktop\PROYECTO\admin-panel
+npx http-server -p 8080
+
+El panel de administrador estará disponible en http://localhost:8080 (si usas servidor local).
+
+Login:
+- Usa las mismas credenciales que en la app móvil
+- Email: tu email registrado
+- Contraseña: tu contraseña
+
+Funcionalidades del panel:
+- Ver todas las reservas de todos los usuarios
+- Gestionar usuarios registrados
+- Calendario interactivo con todas las citas
+- Estadísticas de servicios y horarios más populares
+
+Consejos adicionales
+Conexión al backend desde el emulador:
+
+El emulador Android no puede acceder a localhost o 127.0.0.1 del host.
+Usa 10.0.2.2 en api.js para conectarte al backend desde el emulador.
+Para dispositivos físicos, usa la IP local de tu máquina (como 192.168.1.128).
+
+Conexión al backend desde el panel web:
+
+El panel web usa localhost:8000 por defecto.
+Si necesitas cambiar la URL, edita API_BASE_URL en admin-panel/script.js
+
+Solución de problemas comunes:
+
+Si hay errores de Metro bundler, usa la opción --reset-cache: npx react-native start --reset-cache
+Si la app no se conecta a la API, verifica que ambos servicios (backend y frontend) estén funcionando y que la dirección IP sea correcta.
+Para forzar la reconstrucción de la app: npx react-native clean-project-auto y luego npx react-native run-android
+Herramientas de desarrollo:
+
+Para abrir el menú de desarrollo en el emulador, presiona Ctrl+M o ⌘+M en Mac
+Activa "Enable Hot Reloading" para ver los cambios de código en tiempo real

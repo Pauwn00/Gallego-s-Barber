@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.db
+*.sqlite3
+
+# React Native
+AuthMobileApp/node_modules/
+AuthMobileApp/.expo/
+AuthMobileApp/.expo-shared/
+AuthMobileApp/npm-debug.*
+AuthMobileApp/*.jks
+AuthMobileApp/*.p8
+AuthMobileApp/*.p12
+AuthMobileApp/*.key
+AuthMobileApp/*.mobileprovision
+AuthMobileApp/*.orig.*
+AuthMobileApp/web-build/
+AuthMobileApp/android/app/build/
+AuthMobileApp/android/.gradle/
+AuthMobileApp/android/build/
+AuthMobileApp/ios/Pods/
+AuthMobileApp/ios/build/
+
+# FastAPI
+fastapi-auth/__pycache__/
+fastapi-auth/app/__pycache__/
+fastapi-auth/*.db
+fastapi-auth/venv/
+fastapi-auth/.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

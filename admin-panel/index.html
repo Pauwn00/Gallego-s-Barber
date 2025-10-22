@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador - Barbería</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Pantalla de Login -->
+    <div id="loginScreen" class="screen active">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="logo-section">
+                    <img src="logo.png" alt="Gallego's Barbers" class="login-logo">
+                    <h1>Panel de Administración</h1>
+                </div>
+                
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="adminEmail">Email</label>
+                        <input 
+                            type="email" 
+                            id="adminEmail" 
+                            placeholder="admin@barberia.com"
+                            required
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adminPassword">Contraseña</label>
+                        <input 
+                            type="password" 
+                            id="adminPassword" 
+                            placeholder="••••••••"
+                            required
+                        >
+                    </div>
+                    
+                    <div id="loginError" class="error-message"></div>
+                    
+                    <button type="submit" class="btn-primary" id="loginBtn">
+                        Iniciar Sesión
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla del Dashboard -->
+    <div id="dashboardScreen" class="screen">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo.png" alt="Gallego's Barbers" class="header-logo">
+                    <h2>Panel Administrador</h2>
+                </div>
+                <div class="user-menu">
+                    <span id="adminName">Administrador</span>
+                    <button class="btn-logout" id="logoutBtn">Cerrar Sesión</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="dashboard-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <nav class="sidebar-nav">
+                    <button class="nav-item active" data-tab="appointments">
+                        📅 Reservas
+                    </button>
+                    <button class="nav-item" data-tab="users">
+                        👥 Usuarios
+                    </button>
+                    <button class="nav-item" data-tab="calendar">
+                        🗓️ Calendario
+                    </button>
+                    <button class="nav-item" data-tab="stats">
+                        📊 Estadísticas
+                    </button>
+                </nav>
+            </aside>
+
+            <!-- Main Panel -->
+            <main class="main-panel">
+                <!-- Tab: Reservas -->
+                <div id="appointmentsTab" class="tab-content active">
+                    <div class="tab-header">
+                        <h3>Reservas del Día</h3>
+                        <div class="date-selector">
+                            <input type="date" id="appointmentDate" class="date-input">
+                            <button class="btn-secondary" id="refreshBtn">🔄 Actualizar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalAppointments">0</div>
+                            <div class="stat-label">Total Citas</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="todayAppointments">0</div>
+                            <div class="stat-label">Hoy</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalUsers">0</div>
+                            <div class="stat-label">Usuarios</div>
+                        </div>
+                    </div>
+
+                    <div class="appointments-list" id="appointmentsList">
+                        <div class="loading">Cargando reservas...</div>
+                    </div>
+                </div>
+
+                <!-- Tab: Usuarios -->
+                <div id="usersTab" class="tab-content">
+                    <div class="tab-header">
+                        <h3>Usuarios Registrados</h3>
+                        <input type="text" id="userSearch" class="search-input" placeholder="🔍 Buscar usuario...">
+                    </div>
+                    
+                    <div class="users-list" id="usersList">
+                        <div class="loading">Cargando usuarios...</div>
+                    </div>
+                </div>
+
+                <!-- Tab: Calendario -->
+                <div id="calendarTab" class="tab-content">
+                    <div class="tab-header">
+                        <h3>Calendario de Reservas</h3>
+                        <div class="calendar-controls">
+                            <button class="btn-icon" id="prevMonth">◀</button>
+                            <span id="currentMonth" class="month-label">Enero 2025</span>
+                            <button class="btn-icon" id="nextMonth">▶</button>
+                        </div>
+                    </div>
+                    
+                    <div id="calendar" class="calendar-grid">
+                        <!-- El calendario se generará dinámicamente -->
+                    </div>
+                    
+                    <div id="dayAppointments" class="day-appointments">
+                        <!-- Las citas del día seleccionado aparecerán aquí -->
+                    </div>
+                </div>
+
+                <!-- Tab: Estadísticas -->
+                <div id="statsTab" class="tab-content">
+                    <div class="tab-header">
+                        <h3>Estadísticas</h3>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card large">
+                            <h4>Servicios Más Solicitados</h4>
+                            <div id="servicesChart" class="chart">
+                                <!-- Gráfico simple de servicios -->
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card large">
+                            <h4>Reservas por Hora</h4>
+                            <div id="hoursChart" class="chart">
+                                <!-- Gráfico de horarios populares -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
