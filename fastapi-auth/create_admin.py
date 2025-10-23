@@ -16,7 +16,7 @@ existing_user = db.query(User).filter(
 ).first()
 
 if existing_user:
-    print(f"❌ El usuario '{username}' o email '{email}' ya existe")
+    print(f"El usuario '{username}' o email '{email}' ya existe")
     print(f"Puedes usar: Email: {existing_user.email}")
 else:
     # Crear nuevo usuario admin
@@ -32,7 +32,7 @@ else:
     db.commit()
     db.refresh(new_admin)
     
-    print("\n✅ Usuario administrador creado exitosamente!\n")
+    print("\n Usuario administrador creado exitosamente!\n")
     print("=" * 50)
     print("CREDENCIALES DEL PANEL DE ADMINISTRADOR")
     print("=" * 50)
