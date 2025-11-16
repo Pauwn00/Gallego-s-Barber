@@ -20,11 +20,11 @@ moment.locale('es');
 
 // Lista de servicios disponibles
 const SERVICES = [
-  { id: 'haircut', name: 'Corte de pelo', price: '5€' },
-  { id: 'shave', name: 'Afeitado', price: '5€' },
-  { id: 'haircut_shave', name: 'Corte y afeitado', price: '9€' },
-  { id: 'styling', name: 'Peinado', price: '10€' },
-  { id: 'color', name: 'Tinte', price: '30€' },
+  { id: 'haircut', name: 'Corte de pelo', price: '5€', icon: 'content-cut' },
+  { id: 'shave', name: 'Afeitado', price: '5€', icon: 'face' },
+  { id: 'haircut_shave', name: 'Corte y afeitado', price: '9€', icon: 'spa' },
+  { id: 'styling', name: 'Peinado', price: '10€', icon: 'brush' },
+  { id: 'color', name: 'Tinte', price: '30€', icon: 'palette' },
 ];
 
 const BookAppointmentScreen = ({ navigation }) => {
@@ -140,9 +140,14 @@ const BookAppointmentScreen = ({ navigation }) => {
           ]}
           onPress={() => setSelectedService(service.id)}
         >
-          <View>
-            <Text style={styles.serviceName}>{service.name}</Text>
-            <Text style={styles.servicePrice}>{service.price}</Text>
+          <View style={styles.serviceContent}>
+            <View style={styles.serviceIconContainer}>
+              <Icon name={service.icon} size={28} color="#E63946" />
+            </View>
+            <View style={styles.serviceInfo}>
+              <Text style={styles.serviceName}>{service.name}</Text>
+              <Text style={styles.servicePrice}>{service.price}</Text>
+            </View>
           </View>
           {selectedService === service.id && (
             <Icon name="check-circle" size={24} color="#E63946" />
@@ -286,7 +291,7 @@ const BookAppointmentScreen = ({ navigation }) => {
         
         <View style={styles.confirmationCard}>
           <View style={styles.confirmationRow}>
-            <Icon name="content-cut" size={22} color="#E63946" />
+            <Icon name={selectedServiceObj?.icon} size={22} color="#E63946" />
             <Text style={styles.confirmationLabel}>Servicio:</Text>
             <Text style={styles.confirmationValue}>{selectedServiceObj?.name}</Text>
           </View>
@@ -493,6 +498,23 @@ const styles = StyleSheet.create({
   selectedService: {
     borderColor: '#E63946',
     borderWidth: 2,
+  },
+  serviceContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
+  serviceIconContainer: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: '#FFE8E9',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+  },
+  serviceInfo: {
+    flex: 1,
   },
   serviceName: {
     fontSize: 16,

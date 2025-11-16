@@ -339,8 +339,8 @@ function renderCalendar() {
         const dayElement = document.createElement('div');
         dayElement.className = 'calendar-day';
         
-        const date = new Date(year, month, day);
-        const dateStr = date.toISOString().split('T')[0];
+        // Crear fecha en formato YYYY-MM-DD sin conversión UTC
+        const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
         
         dayElement.innerHTML = `
             <div class="day-number">${day}</div>
@@ -377,10 +377,10 @@ async function loadMonthAppointments(year, month) {
         // Contar citas por día
         const appointmentsByDay = {};
         appointments.forEach(apt => {
-            const date = new Date(apt.date);
-            if (date.getFullYear() === year && date.getMonth() === month) {
-                const day = date.getDate();
-                appointmentsByDay[day] = (appointmentsByDay[day] || 0) + 1;
+            // Comparar directamente el string de fecha YYYY-MM-DD
+            const [aptYear, aptMonth, aptDay] = apt.date.split('-').map(Number);
+            if (aptYear === year && aptMonth - 1 === month) {
+                appointmentsByDay[aptDay] = (appointmentsByDay[aptDay] || 0) + 1;
             }
         });
         
