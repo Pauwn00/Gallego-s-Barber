@@ -26,13 +26,11 @@ const DashboardScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
 
-  // Cargar datos del usuario y citas al montar el componente
   useEffect(() => {
     loadUserData();
     loadAppointments();
   }, []);
 
-  // Cargar datos del usuario
   const loadUserData = async () => {
     try {
       const userData = await AsyncStorage.getItem('user_data');
@@ -45,7 +43,6 @@ const DashboardScreen = ({ navigation }) => {
     }
   };
 
-  // Cargar las citas del usuario
   const loadAppointments = async () => {
     setLoading(true);
     try {
@@ -89,13 +86,11 @@ const DashboardScreen = ({ navigation }) => {
     }
   };
 
-  // Manejar refresh al deslizar hacia abajo
   const onRefresh = () => {
     setRefreshing(true);
     loadAppointments();
   };
 
-  // Cerrar sesión
   const handleLogout = async () => {
     try {
       await authAPI.logout();
@@ -108,12 +103,10 @@ const DashboardScreen = ({ navigation }) => {
     }
   };
 
-  // Ir a la pantalla de reserva
   const handleNewAppointment = () => {
     navigation.navigate('BookAppointment');
   };
 
-  // Cancelar una cita
   const handleCancelAppointment = async (appointmentId) => {
     Alert.alert(
       'Cancelar Cita',
@@ -144,7 +137,6 @@ const DashboardScreen = ({ navigation }) => {
     );
   };
 
-  // Renderizar cada cita
   const renderAppointmentItem = ({ item }) => (
     <TouchableOpacity
       style={styles.appointmentCard}

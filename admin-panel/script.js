@@ -16,7 +16,6 @@ const adminName = document.getElementById('adminName');
 const navItems = document.querySelectorAll('.nav-item');
 const tabContents = document.querySelectorAll('.tab-content');
 
-// ===== AUTENTICACIÓN =====
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -86,7 +85,6 @@ window.addEventListener('load', () => {
     }
 });
 
-// ===== NAVEGACIÓN TABS =====
 navItems.forEach(item => {
     item.addEventListener('click', () => {
         const tabName = item.getAttribute('data-tab');
@@ -113,7 +111,6 @@ navItems.forEach(item => {
     });
 });
 
-// ===== FUNCIONES DE API =====
 async function fetchAPI(endpoint, options = {}) {
     const defaultOptions = {
         headers: {
@@ -135,7 +132,6 @@ async function fetchAPI(endpoint, options = {}) {
     return response.json();
 }
 
-// ===== CARGAR DATOS DEL DASHBOARD =====
 async function loadDashboardData() {
     try {
         // Obtener información del usuario
@@ -151,7 +147,6 @@ async function loadDashboardData() {
     }
 }
 
-// ===== CITAS =====
 async function loadAppointments(date = null) {
     const appointmentsList = document.getElementById('appointmentsList');
     appointmentsList.innerHTML = '<div class="loading">Cargando reservas...</div>';
@@ -229,7 +224,6 @@ async function loadAppointments(date = null) {
     }
 }
 
-// ===== USUARIOS =====
 async function loadUsers() {
     const usersList = document.getElementById('usersList');
     usersList.innerHTML = '<div class="loading">Cargando usuarios...</div>';
@@ -294,7 +288,6 @@ document.getElementById('userSearch').addEventListener('input', (e) => {
     });
 });
 
-// ===== CALENDARIO =====
 function renderCalendar() {
     const calendar = document.getElementById('calendar');
     const monthLabel = document.getElementById('currentMonth');
@@ -465,7 +458,6 @@ document.getElementById('nextMonth').addEventListener('click', () => {
     renderCalendar();
 });
 
-// ===== ESTADÍSTICAS =====
 async function loadStats() {
     try {
         const appointments = await fetchAPI('/appointments/admin/all-appointments');
@@ -531,7 +523,6 @@ async function updateStats() {
     }
 }
 
-// ===== SELECTOR DE FECHA =====
 document.getElementById('appointmentDate').valueAsDate = new Date();
 document.getElementById('appointmentDate').addEventListener('change', (e) => {
     const date = e.target.value;
@@ -543,7 +534,6 @@ document.getElementById('refreshBtn').addEventListener('click', () => {
     loadAppointments(date);
 });
 
-// ===== UTILIDADES =====
 function formatDate(dateStr) {
     const date = new Date(dateStr);
     return date.toLocaleDateString('es-ES', {

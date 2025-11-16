@@ -18,7 +18,6 @@ import { appointmentsAPI } from '../services/api';
 
 moment.locale('es');
 
-// Lista de servicios disponibles
 const SERVICES = [
   { id: 'haircut', name: 'Corte de pelo', price: '5€', icon: 'content-cut' },
   { id: 'shave', name: 'Afeitado', price: '5€', icon: 'face' },
@@ -28,7 +27,6 @@ const SERVICES = [
 ];
 
 const BookAppointmentScreen = ({ navigation }) => {
-  // Estados para el proceso de reserva
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
@@ -37,17 +35,14 @@ const BookAppointmentScreen = ({ navigation }) => {
   const [availableSlots, setAvailableSlots] = useState([]);
   const [loading, setLoading] = useState(false);
   
-  // Fecha mínima seleccionable (hoy)
   const minDate = moment().format('YYYY-MM-DD');
 
-  // Obtener horarios disponibles cuando se selecciona una fecha
   useEffect(() => {
     if (selectedDate) {
       fetchAvailableTimes(selectedDate);
     }
   }, [selectedDate]);
 
-  // Función para obtener los horarios disponibles
   const fetchAvailableTimes = async (date) => {
     setLoading(true);
     try {
@@ -84,7 +79,6 @@ const BookAppointmentScreen = ({ navigation }) => {
     }
   };
 
-  // Manejar la confirmación de la cita
   const handleConfirmAppointment = async () => {
     if (!selectedDate || !selectedTime || !selectedService) {
       Alert.alert('Error', 'Por favor, completa todos los campos');
@@ -126,7 +120,6 @@ const BookAppointmentScreen = ({ navigation }) => {
     }
   };
 
-  // Renderizar el paso 1: Seleccionar servicio
   const renderServiceSelection = () => (
     <View style={styles.stepContainer}>
       <Text style={styles.stepTitle}>Elige un servicio</Text>
@@ -220,7 +213,6 @@ const BookAppointmentScreen = ({ navigation }) => {
     );
   };
 
-  // Renderizar el paso 3: Seleccionar hora
   const renderTimeSelection = () => (
     <View style={styles.stepContainer}>
       <Text style={styles.stepTitle}>

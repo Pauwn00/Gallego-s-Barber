@@ -2,9 +2,8 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Configuración base de la API
-const BASE_URL = 'http://10.0.2.2:8000/api/v1'; // IP para emulador Android (mapea a localhost del host)
+const BASE_URL = 'http://10.0.2.2:8000/api/v1';
 
-// Crear instancia de axios
 const api = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -12,7 +11,6 @@ const api = axios.create({
   },
 });
 
-// Crear instancia de axios
 const apiClient = axios.create({
   baseURL: BASE_URL,
   timeout: 10000,
@@ -169,7 +167,6 @@ export const protectedAPI = {
 
 // Servicios para las citas
 export const appointmentsAPI = {
-  // Crear una nueva cita
   createAppointment: async (appointmentData) => {
     try {
       const response = await apiClient.post('/appointments/', appointmentData);
@@ -208,7 +205,6 @@ export const appointmentsAPI = {
     }
   },
 
-  // Cancelar una cita
   cancelAppointment: async (appointmentId) => {
     try {
       await apiClient.delete(`/appointments/${appointmentId}`);
